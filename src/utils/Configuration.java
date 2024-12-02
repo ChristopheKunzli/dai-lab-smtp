@@ -2,11 +2,12 @@ package src.utils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Configuration {
-    private List<String> victims;
-    private List<Email> messages;
+    private List<String> victims = new ArrayList<>();
+    private List<Email> messages = new ArrayList<>();
     private int numberOfGroups;
 
     public Configuration(String victimsFile, String messagesFile, int numberOfGroups) {
@@ -16,7 +17,15 @@ public class Configuration {
     }
 
     public List<String> getVictims() {
-        return victims;
+        List<String> vic = new ArrayList<>();
+        for(int i = 1; i < victims.size();++i){
+            vic.add(victims.get(i));
+        }
+        return vic;
+    }
+
+    public String getFakeSender() {
+        return victims.getFirst();
     }
 
     public List<Email> getMessages() {
@@ -32,7 +41,7 @@ public class Configuration {
             String line = br.readLine();
             while (line != null) {
                 if (!line.contains("@")) {
-                    throw new IllegalArgumentException("Invalid email address: " + line);
+                    throw new IllegalArgumentException("Invalid email address<" + line + ">");
                 }
                 victims.add(line);
                 line = br.readLine();

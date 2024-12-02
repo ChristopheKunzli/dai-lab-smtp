@@ -9,8 +9,11 @@ public class Email {
         this.body = body;
     }
 
-    @Override
-    public String toString() {
-        return "";
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getBody() {
+        return body;
     }
 }
