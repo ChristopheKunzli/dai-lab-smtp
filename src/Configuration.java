@@ -10,10 +10,10 @@ public class Configuration {
     private List<Email> messages;
     private final int numberOfGroups;
 
-    public Configuration(String victimsFile, String messagesFile, int numberOfGroups) {
+    public Configuration(int numberOfGroups) {
         this.numberOfGroups = numberOfGroups;
-        loadVictims(victimsFile);
-        loadMessages(messagesFile);
+        victims = new ArrayList<>();
+        messages = new ArrayList<>();
     }
 
     public List<String> getVictims() {
@@ -40,7 +40,7 @@ public class Configuration {
         return numberOfGroups;
     }
 
-    private void loadVictims(String victimsFile) {
+    public boolean loadVictims(String victimsFile) {
         victims = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(victimsFile))) {
             String line = br.readLine();
@@ -53,10 +53,12 @@ public class Configuration {
             }
         } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 
-    private void loadMessages(String messagesFile) {
+    public boolean loadMessages(String messagesFile) {
         messages = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(messagesFile))) {
             String line;
@@ -70,6 +72,8 @@ public class Configuration {
             }
         } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
+            return false;
         }
+        return true;
     }
 }

@@ -20,7 +20,11 @@ public class Client {
         String victimsFile = args[0], messageFile = args[1];
         int groupsCount = Integer.parseInt(args[2]);
 
-        Configuration configuration = new Configuration(victimsFile, messageFile, groupsCount);
+        Configuration configuration = new Configuration(groupsCount);
+        if (!configuration.loadVictims(victimsFile) || !configuration.loadMessages(messageFile)) {
+            System.out.println("Error while loading configuration");
+            return;
+        }
 
         try (Socket socket = new Socket(smtpAdress, smtpPort);
              var in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
@@ -57,7 +61,7 @@ public class Client {
 
     private static void write(BufferedWriter writer, String text) {
         try {
-            writer.write(text+ "\r\n");
+            writer.write(text + "\r\n");
             System.out.println("C:" + text);
             writer.flush();
         } catch (Exception e) {
