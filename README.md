@@ -10,10 +10,10 @@ To test the application, you can use a mock SMTP server called MailDev. Follow t
 
 1. Install Docker.
 2. Run the following command to start MailDev:
-   ```sh
-   docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev
-
-    The SMTP server will be accessible at localhost:1025 and the MailDev web interface at http://localhost:1080.
+```sh
+docker run -d -p 1080:1080 -p 1025:1025 maildev/maildev
+```
+The SMTP server will be accessible at localhost:1025 and the MailDev web interface at http://localhost:1080.
 
 ## Configuring and Running the Prank Campaign
 
