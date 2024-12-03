@@ -1,4 +1,4 @@
-package src.utils;
+package src;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Configuration {
-    private List<String> victims = new ArrayList<>();
-    private List<Email> messages = new ArrayList<>();
-    private int numberOfGroups;
+    private List<String> victims;
+    private List<Email> messages;
+    private final int numberOfGroups;
 
     public Configuration(String victimsFile, String messagesFile, int numberOfGroups) {
         this.numberOfGroups = numberOfGroups;
@@ -17,11 +17,11 @@ public class Configuration {
     }
 
     public List<String> getVictims() {
-        List<String> vic = new ArrayList<>();
-        for(int i = 1; i < victims.size();++i){
-            vic.add(victims.get(i));
+        List<String> victimsWithoutFakeSender = new ArrayList<>();
+        for (int i = 1; i < victims.size(); ++i) {
+            victimsWithoutFakeSender.add(victims.get(i));
         }
-        return vic;
+        return victimsWithoutFakeSender;
     }
 
     public String getFakeSender() {
@@ -37,6 +37,7 @@ public class Configuration {
     }
 
     private void loadVictims(String victimsFile) {
+        victims = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(victimsFile))) {
             String line = br.readLine();
             while (line != null) {
@@ -52,6 +53,7 @@ public class Configuration {
     }
 
     private void loadMessages(String messagesFile) {
+        messages = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(messagesFile))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -59,6 +61,7 @@ public class Configuration {
                 if (parts.length != 2) {
                     throw new IllegalArgumentException("Invalid message format: <" + line + ">");
                 }
+                parts[1] = parts[1].replaceAll("<br>", "\r\n");
                 messages.add(new Email(parts[0], parts[1]));
             }
         } catch (Exception e) {

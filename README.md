@@ -18,10 +18,10 @@ The SMTP server will be accessible at localhost:1025 and the MailDev web interfa
 ## Configuring and Running the Prank Campaign
 
 ### Clone the repository with this command:  
-with http:  
-git clone https://github.com/ChristopheKunzli/dai-lab-smtp.git  
-or ssh:  
-git clone git@github.com:ChristopheKunzli/dai-lab-smtp.git  
+- with http:  
+  - git clone https://github.com/ChristopheKunzli/dai-lab-smtp.git  
+- or ssh:  
+  - git clone git@github.com:ChristopheKunzli/dai-lab-smtp.git  
 
 ### Edit the configuration files to define:
 Victims list (e-mail addresses) : src/victims.txt
@@ -29,8 +29,9 @@ Messages list (subjects and bodies) : src/messages.txt
 Number of groups for the prank campaign : not a file, must be passed in parameter
 Run the application using the following command:
 
+``` sh
 java -jar SMTPPrankClient.jar <victimsList.txt> <messages.txt> <number of groups>
-
+```
 ## Implementation Description
 ### Class Diagram
 
@@ -45,9 +46,10 @@ Example Dialogue with SMTP Server
 
 Below is an example of a dialogue between the client and the SMTP server during an email prank (screenshot included):
 
+``` sh
 C: EHLO localhost
 S: 250 OK
 C: MAIL FROM:<bob@example.com>
 S: 250 OK
 C: RCPT TO:<alice@example.com>
-...
+```

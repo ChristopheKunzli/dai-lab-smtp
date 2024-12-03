@@ -1,8 +1,8 @@
-package src.utils;
+package src;
 
 public class Email {
-    private String subject;
-    private String body;
+    private final String subject;
+    private final String body;
 
     public Email(String subject, String body) {
         this.subject = subject;

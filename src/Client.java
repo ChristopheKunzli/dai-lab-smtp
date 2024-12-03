@@ -1,6 +1,4 @@
-package src.client;
-
-import src.utils.*;
+package src;
 
 import java.io.*;
 import java.net.Socket;
@@ -31,7 +29,6 @@ public class Client {
              var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
 
             System.out.println("connected to server mail at address:" + smtpAdress + " port:" + smtpPort);
-
             read(in);
             write(out, "EHLO test");
             read(in);
@@ -44,18 +41,16 @@ public class Client {
             write(out, "DATA");
             read(in);
             write(out, "From:<" + configuration.getFakeSender() + ">");
-            read(in);
-            write(out, "To:");
-            read(in);
-            Email email = messages.get(new Random().nextInt() % messages.size());
+            write(out, "To:" + String.join(",", configuration.getVictims()));
+            Email email = messages.get(Math.abs(new Random().nextInt()) % messages.size());
+
             write(out, "Subject:" + email.getSubject());
-            read(in);
-            write(out, "Content-Type: text/plain; charset=utf-");
-            read(in);
+            write(out, "Content-Type: text/plain; charset=utf-8" + "\r\n");
             write(out, email.getBody());
-            read(in);
+            write(out, "");
             write(out, ".");
             read(in);
+            write(out, "QUIT");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -64,8 +59,7 @@ public class Client {
 
     private static void write(BufferedWriter writer, String text) {
         try {
-            Thread.sleep(2000);
-            writer.write(text + "\n");
+            writer.write(text+ "\r\n");
             System.out.println("C:" + text);
             writer.flush();
         } catch (Exception e) {
@@ -78,6 +72,9 @@ public class Client {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println("S:" + line);
+                if (line.charAt(3) == ' ') {
+                    break;
+                }
             }
         } catch (Exception e) {
             System.out.println("Error while reading server: " + e.getMessage());
