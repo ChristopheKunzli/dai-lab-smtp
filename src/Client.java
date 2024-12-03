@@ -3,8 +3,6 @@ package src;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Random;
 
 public class Client {
     private static final String pranker = "pranker.pranking@prankService.com";
