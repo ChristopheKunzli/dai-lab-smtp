@@ -32,6 +32,10 @@ public class Configuration {
         return messages;
     }
 
+    public Email getRandomMessage() {
+        return messages.get((int) (Math.random() * messages.size()));
+    }
+
     public int getNumberOfGroups() {
         return numberOfGroups;
     }

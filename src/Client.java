@@ -22,8 +22,6 @@ public class Client {
 
         Configuration configuration = new Configuration(victimsFile, messageFile, groupsCount);
 
-        List<Email> messages = configuration.getMessages();
-
         try (Socket socket = new Socket(smtpAdress, smtpPort);
              var in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
@@ -42,7 +40,7 @@ public class Client {
             read(in);
             write(out, "From:<" + configuration.getFakeSender() + ">");
             write(out, "To:" + String.join(",", configuration.getVictims()));
-            Email email = messages.get(Math.abs(new Random().nextInt()) % messages.size());
+            Email email = configuration.getRandomMessage();
 
             write(out, "Subject:" + email.getSubject());
             write(out, "Content-Type: text/plain; charset=utf-8" + "\r\n");
