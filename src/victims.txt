@@ -1,6 +1,0 @@
-exemple1.e1@gmail.com
-exemple2.e2@gmail.com
-exemple3.e3@gmail.com
-exemple4.e4@gmail.com
-exemple5.e5@gmail.com
-exemple6.e6@gmail.com
