@@ -70,14 +70,13 @@ public class Configuration {
      */
     public boolean loadVictims(String victimsFile) {
         victims = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(victimsFile))) {
-            String line = br.readLine();
-            while (line != null) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(victimsFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 if (!line.contains("@")) {
                     throw new IllegalArgumentException("Invalid email address<" + line + ">");
                 }
                 victims.add(line);
-                line = br.readLine();
             }
         } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
@@ -97,10 +96,12 @@ public class Configuration {
         try (BufferedReader br = new BufferedReader(new FileReader(messagesFile))) {
             String line;
             while ((line = br.readLine()) != null) {
+                // Split the line into subject and body
                 String[] parts = line.split(";");
                 if (parts.length != 2) {
                     throw new IllegalArgumentException("Invalid message format: <" + line + ">");
                 }
+                // Replace <br> with real newline character
                 parts[1] = parts[1].replaceAll("<br>", "\r\n");
                 messages.add(new Email(parts[0], parts[1]));
             }
