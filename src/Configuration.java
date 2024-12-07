@@ -8,24 +8,12 @@ import java.util.List;
 public class Configuration {
     private List<String> victims;
     private List<Email> messages;
-    private final int numberOfGroups;
+    private String sender;
 
-    public Configuration(int numberOfGroups) {
-        this.numberOfGroups = numberOfGroups;
+    public Configuration(String sender) {
+        this.sender = sender;
         victims = new ArrayList<>();
         messages = new ArrayList<>();
-    }
-
-    public List<String> getVictims() {
-        List<String> victimsWithoutFakeSender = new ArrayList<>();
-        for (int i = 1; i < victims.size(); ++i) {
-            victimsWithoutFakeSender.add(victims.get(i));
-        }
-        return victimsWithoutFakeSender;
-    }
-
-    public String getFakeSender() {
-        return victims.getFirst();
     }
 
     public List<Email> getMessages() {
@@ -36,8 +24,32 @@ public class Configuration {
         return messages.get((int) (Math.random() * messages.size()));
     }
 
-    public int getNumberOfGroups() {
-        return numberOfGroups;
+    public Group[] formGroups(int groupsCount) {
+        if (groupsCount < 1) {
+            throw new IllegalArgumentException("Number of groups must be at least 1");
+        }
+
+        int victimsPerGroup = victims.size() / groupsCount;
+        int remainingVictims = victims.size() % groupsCount;
+
+        if (victimsPerGroup < 2) {
+            throw new IllegalArgumentException("Number of victims per group must be at least 2");
+        }
+
+        Group[] groups = new Group[groupsCount];
+        int victimIndex = 0;
+
+        for (int i = 0; i < groupsCount; ++i) {
+            int groupSize = victimsPerGroup + (remainingVictims > 0 ? 1 : 0);
+            List<String> groupVictims = new ArrayList<>();
+            for (int j = 0; j < groupSize; ++j) {
+                groupVictims.add(victims.get(victimIndex++));
+            }
+            groups[i] = new Group(groupVictims, sender);
+            --remainingVictims;
+        }
+
+        return groups;
     }
 
     public boolean loadVictims(String victimsFile) {
