@@ -5,10 +5,13 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Configures a prank campaign.
+ */
 public class Configuration {
-    private List<String> victims;
-    private List<Email> messages;
-    private String sender;
+    private List<String> victims;//list of email addresses
+    private List<Email> messages;//list of email content (subject + body)
+    private final String sender;//email address of the pranker
 
     public Configuration(String sender) {
         this.sender = sender;
@@ -16,14 +19,21 @@ public class Configuration {
         messages = new ArrayList<>();
     }
 
-    public List<Email> getMessages() {
-        return messages;
-    }
-
+    /**
+     * Returns a random message from the list of messages.
+     *
+     * @return chosen message
+     */
     public Email getRandomMessage() {
         return messages.get((int) (Math.random() * messages.size()));
     }
 
+    /**
+     * Forms groups of victims. Each group has at least 2 victims.
+     *
+     * @param groupsCount number of groups to form
+     * @return an array of groups
+     */
     public Group[] formGroups(int groupsCount) {
         if (groupsCount < 1) {
             throw new IllegalArgumentException("Number of groups must be at least 1");
@@ -52,6 +62,12 @@ public class Configuration {
         return groups;
     }
 
+    /**
+     * Loads the list of victims email address from a file. Each victim occupies one line.
+     *
+     * @param victimsFile path to the file containing the victims
+     * @return true if the victims were loaded successfully, false otherwise
+     */
     public boolean loadVictims(String victimsFile) {
         victims = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(victimsFile))) {
@@ -70,6 +86,12 @@ public class Configuration {
         return true;
     }
 
+    /**
+     * Loads messages from a file. Each message occupies one line. The subject and the body are separated by a semicolon.
+     *
+     * @param messagesFile path to the file containing the messages
+     * @return true if the messages were loaded successfully, false otherwise
+     */
     public boolean loadMessages(String messagesFile) {
         messages = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(messagesFile))) {

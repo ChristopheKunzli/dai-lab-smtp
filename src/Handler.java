@@ -7,10 +7,15 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Handles the sending of an email to a group of victims.
+ */
 public class Handler implements Runnable {
+    // Group of victims, first victim is used as fake sender
     private final Group group;
     private final Email email;
 
+    // SMTP server address and port
     private final String smtpAddress;
     private final int smtpPort;
 
@@ -43,9 +48,9 @@ public class Handler implements Runnable {
             write(out, "From:<" + group.getFakeSender() + ">");
             write(out, "To:" + String.join(",", group.getVictims()));
 
-            write(out, "Subject:" + email.getSubject());
+            write(out, "Subject:" + email.subject());
             write(out, "Content-Type: text/plain; charset=utf-8" + "\r\n");
-            write(out, email.getBody());
+            write(out, email.body());
             write(out, "");
             write(out, ".");
             read(in);
@@ -56,6 +61,12 @@ public class Handler implements Runnable {
         }
     }
 
+    /**
+     * Write some text to the server
+     *
+     * @param writer writer linked to socket
+     * @param text   text to write
+     */
     private static void write(BufferedWriter writer, String text) {
         try {
             writer.write(text + "\r\n");
@@ -66,6 +77,11 @@ public class Handler implements Runnable {
         }
     }
 
+    /**
+     * Read some text from the server
+     *
+     * @param reader reader linked to socket
+     */
     private static void read(BufferedReader reader) {
         try {
             String line;
