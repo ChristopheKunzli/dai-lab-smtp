@@ -35,17 +35,21 @@ git clone git@github.com:ChristopheKunzli/dai-lab-smtp.git
 
 ### Compile the project:
 
+Make sure you have Maven installed on your machine. Then, compile the project using the following command:
+
 ``` sh
 mvn clean package
 ```
 
 ### Run the app:
 
-The app can be run using the following command:
+The app can then be run using the following command:
 
 ``` sh
 java -jar target/prankApp-1.0.jar <victimsList.txt> <messages.txt> <number of groups> <prankerEmail> <address> <port>
 ```
+
+Parameters:
 
 - `<victimsList.txt>`: A file containing a list of email addresses.
     - Must contain one email address per line.
@@ -71,7 +75,7 @@ Key Components
     PrankGenerator: Generates prank groups and messages.
     ConfigManager: Loads and validates configuration files.
 
-Example Dialogue with SMTP Server
+### Example Dialogue with SMTP Server
 
 Below is an example of a dialogue between the client and the SMTP server during an email prank:
 
