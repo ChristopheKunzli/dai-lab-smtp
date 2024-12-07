@@ -51,7 +51,7 @@ Parameters:
     - (see example in the `victimsList.txt` file)
     - UTF-8 encoding.
 - `<messages.txt>`: A file containing email messages (subject and body).
-    - Each message must be contained on 1 line.
+    - Each message (subject + body) must be contained on 1 line.
     - The subject and body must be separated by a `;`.
     - All new lines in the body must be replaced by `<br>` to fit on one line.
     - (see example in the `messages.txt` file)
