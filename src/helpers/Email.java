@@ -1,4 +1,4 @@
-package src;
+package helpers;
 
 /**
  * Represents an email with a subject and a body.
@@ -6,5 +6,4 @@ package src;
  * @param subject
  * @param body
  */
-public record Email(String subject, String body) {
-}
+public record Email(String subject, String body) { }

@@ -73,9 +73,9 @@ Key Components
 
 Example Dialogue with SMTP Server
 
-Below is an example of a dialogue between the client and the SMTP server during an email prank (screenshot included):
+Below is an example of a dialogue between the client and the SMTP server during an email prank:
 
-``` sh
+```
 connected to server mail at address:localhost port:1025
 S:220 78ac9ad46d6f ESMTP
 C:EHLO test

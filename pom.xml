@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>src.Client</mainClass> <!-- Update if class is in a package -->
+                            <mainClass>Client</mainClass> <!-- Update if class is in a package -->
                         </manifest>
                     </archive>
                 </configuration>
