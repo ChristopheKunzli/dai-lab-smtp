@@ -8,7 +8,8 @@ a practical and entertaining way.
 
 ## Mock SMTP Server Setup
 
-To test the application, you can use a mock SMTP server called MailDev. Follow these steps to set it up:
+To test the application, you can use a mock SMTP server instead of a real one. We recommend using MailDev, a simple SMTP
+server with a web interface for viewing emails. To set up MailDev, follow these steps:
 
 1. Install Docker.
 2. Run the following command to start MailDev:
@@ -23,14 +24,8 @@ The SMTP server will be accessible at localhost:1025 and the MailDev web interfa
 
 ### Clone repository:
 
-Clone the repository using one of the following commands:
-
 ```sh
 git clone https://github.com/ChristopheKunzli/dai-lab-smtp.git  
-```
-
-```sh
-git clone git@github.com:ChristopheKunzli/dai-lab-smtp.git  
 ```
 
 ### Compile the project:
@@ -51,13 +46,16 @@ java -jar target/prankApp-1.0.jar <victimsList.txt> <messages.txt> <number of gr
 
 Parameters:
 
-- `<victimsList.txt>`: A file containing a list of email addresses.
+- `<victimsList.txt>`: A text ile containing a list of email addresses.
     - Must contain one email address per line.
+    - (see example in the `victimsList.txt` file)
+    - UTF-8 encoding.
 - `<messages.txt>`: A file containing email messages (subject and body).
     - Each message must be contained on 1 line.
     - The subject and body must be separated by a `;`.
     - All new lines in the body must be replaced by `<br>` to fit on one line.
     - (see example in the `messages.txt` file)
+    - UTF-8 encoding.
 - `<number of groups>`: The number of groups to form for the prank.
     - It must be possible to divide victims into groups of at least 2 people.
 - `<prankerEmail>`: The email address of the pranker. This address will be used to send the prank emails.
