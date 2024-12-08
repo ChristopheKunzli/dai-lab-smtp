@@ -106,6 +106,9 @@ This class diagram shows the main components of the application and their relati
 
 Below is an example of a dialogue between the client and the SMTP server during an email prank:
 
+<details>
+  <summary>Click here to display example</summary>
+
 ```
 connected to server mail at address:localhost port:1025
 S:220 78ac9ad46d6f ESMTP
@@ -161,6 +164,8 @@ S:250 Message queued as eHZJtWkd
 C:QUIT
 
 ```
+
+</details>
 
 ## Ideas for future improvements
 
