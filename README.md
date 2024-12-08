@@ -9,7 +9,9 @@
     1. [Class Diagram](#class-diagram)
     2. [Key Components](#key-components)
     3. [Example Dialogue with SMTP Server](#example-dialogue-with-smtp-server)
-5. Ideas for future improvements
+5. [Ideas for future improvements](#ideas-for-future-improvements)
+    1. [Easier configuration](#easier-configuration)
+    2. [Interface](#interface)
 
 ## Overview
 
