@@ -1,5 +1,16 @@
 # SMTP Prank Client Report
 
+# Table of Contents
+
+1. [Overview](#overview)
+2. [Mock SMTP Server Setup](#mock-smtp-server-setup)
+3. [Configuring and Running the Prank Campaign](#configuring-and-running-the-prank-campaign)
+4. [Implementation Description](#implementation-description)
+    1. [Class Diagram](#class-diagram)
+    2. [Key Components](#key-components)
+    3. [Example Dialogue with SMTP Server](#example-dialogue-with-smtp-server)
+5. Ideas for future improvements
+
 ## Overview
 
 This project is a TCP client application in Java designed to automatically send prank emails to groups of victims by
@@ -148,3 +159,19 @@ S:250 Message queued as eHZJtWkd
 C:QUIT
 
 ```
+
+## Ideas for future improvements
+
+### Easier configuration
+
+Currently, the user must provide multiple configuration files and parameters as command line arguments. We could use
+instead a single configuration file in JSON or YAML format containing all necessary data.
+
+This change would improve the user experience and make it easier to verify the configuration is valid before running the
+prank campaign. It would also allow for more complex configurations, such as specifying multiple messages or different
+prankers for each group.
+
+### Interface
+
+A graphical interface could be added to the application to make it more user-friendly. This would allow users to easily
+configure the prank campaign and monitor its progress.
