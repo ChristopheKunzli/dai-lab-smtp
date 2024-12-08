@@ -70,11 +70,24 @@ This class diagram shows the main components of the application and their relati
 ![Class Diagram](figures/src.png)
 *Note: The diagram was generated using IntelliJ IDEA's built-in UML diagram generator.*
 
-Key Components
+### Key Components
 
-    SMTPClient: Manages the socket communication with the SMTP server.
-    PrankGenerator: Generates prank groups and messages.
-    ConfigManager: Loads and validates configuration files.
+- Client
+    - The main class that orchestrates the prank campaign.
+    - It loads the configuration, creates the groups, and crate one virual thread per group to send the pranks.
+- Configuration
+    - Used to read and parse configuration files (victim list, messages). Also does simple validation checks.
+    - Has helper methods to get a random message and can form groups.
+- Handler
+    - Handles the communication with the SMTP server.
+    - One instance is created per group.
+    - Each instance runs on its own virtual thread.
+- Email
+    - Simple record class to hold an email's information (subject, body).
+- Group
+    - Packs together a list of victims and the real sender's email address.
+    - First victim is the sender of the email.
+    - Is used by the Handler to send the pranks.
 
 ### Example Dialogue with SMTP Server
 
