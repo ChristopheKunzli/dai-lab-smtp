@@ -46,7 +46,7 @@ java -jar target/prankApp-1.0.jar <victimsList.txt> <messages.txt> <number of gr
 
 Parameters:
 
-- `<victimsList.txt>`: A text ile containing a list of email addresses.
+- `<victimsList.txt>`: A text file containing a list of email addresses.
     - Must contain one email address per line.
     - (see example in the `victimsList.txt` file)
     - UTF-8 encoding.
@@ -66,7 +66,10 @@ Parameters:
 
 ### Class Diagram
 
-A simplified class diagram showing the core components of the prank client will be included here.
+This class diagram shows the main components of the application and their relationships:
+![Class Diagram](figures/src.png)
+*Note: The diagram was generated using IntelliJ IDEA's built-in UML diagram generator.*
+
 Key Components
 
     SMTPClient: Manages the socket communication with the SMTP server.
