@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Handles the sending of an email to a group of victims.
+ * Handles sending an email to a group of victims.
  */
 public class Handler implements Runnable {
     // Group of victims, first victim is used as fake sender

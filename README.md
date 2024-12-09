@@ -182,7 +182,3 @@ prankers for each group.
 
 A graphical interface could be added to the application to make it more user-friendly. This would allow users to easily
 configure the prank campaign and monitor its progress.
-
-### Simplify classes
-
-Email and Group classes could be merged into one class, as they are closely related.
